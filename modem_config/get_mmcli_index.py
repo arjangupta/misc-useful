@@ -2,7 +2,12 @@ import sys
 
 def main():
     input_str = input()
+
     search_str = '/Modem/'
+    
+    if sys.argv[1] == '-b':
+        search_str = '/Bearer/'
+
     search_result = input_str.find(search_str)
 
     if search_result == -1:
@@ -14,10 +19,10 @@ def main():
         print(102)
         return
 
-    modem_index = input_str[search_result + len(search_str)]
+    mmcli_index = input_str[search_result + len(search_str)]
     
     # Print modem index value
-    print(modem_index)
+    print(mmcli)
     return
 
 
