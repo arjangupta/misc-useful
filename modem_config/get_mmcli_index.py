@@ -19,6 +19,7 @@ def main():
         print(102)
         return
 
+    # TODO: Make sure to get 2 digit modem indices too - try getting substring
     mmcli_index = input_str[search_result + len(search_str)]
     
     # Print modem index value
