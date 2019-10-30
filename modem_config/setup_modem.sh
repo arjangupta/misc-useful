@@ -8,7 +8,7 @@ modem_search() {
     sleep $1 # wait for given number of seconds
     kill $PID # kill the modem search
 
-    modem_idx=$(mmcli -L | grep Modem | python get_mmcli_index.py) # get the index of the modem that was found
+    modem_idx=$(mmcli -L | grep Modem | python3 get_mmcli_index.py) # get the index of the modem that was found
 }
 
 modem_network_interface=$(ip addr | grep wwan0)
@@ -44,12 +44,12 @@ fi
 sudo mmcli -m $modem_idx -e # enable the detected modem
 sudo mmcli -m $modem_idx --simple-connect="apn=intelli.gw10.vzwentp" # connect to our APN
 
-bearer_idx=$(mmcli -m $modem_idx | grep Bearer | python get_mmcli_index.py -b) # get the index of the bearer that was found
+bearer_idx=$(mmcli -m $modem_idx | grep Bearer | python3 get_mmcli_index.py -b) # get the index of the bearer that was found
 
 # check output
 if [ $bearer_idx = "101" || $bearer_idx = "102" ]
 then
-    echo "No valid bearer path found"
+    echo "No valid bearer path found, simple connect probably failed"
     return 101
 fi
 
